@@ -1,0 +1,67 @@
+#div {
+    position:absolute;
+    width: 550px;
+    height: 550px;
+    left: 50%;
+    top: 50%;
+    margin-left: -275px;
+    margin-top: -275px;
+    -moz-box-shadow: 2px 2px 3px 3px black;
+    -webkik-box-shadow:2px 2px 3px 3px black;
+    box-shadow: 2px 2px 3px 3px;
+}
+
+
+button{
+    width: 150px;
+    height: 150px;
+    border: none;
+    position: absolute;
+    font-size: 100px;
+    color:white;
+   }
+   .clicked{
+    background-color: gray;
+   }
+   .boton{
+    background-color: rgba(66, 64, 192, 0.863);
+   }
+   .boton:HOVER {
+    background-color: rgb(55, 185, 168);
+   }
+   #b1{
+    top:25px;
+    left:25px;
+   }
+   #b2{
+    top:25px;
+    left:200px;
+   }
+   #b3{
+    top:25px;
+    left:375px;
+   }
+   #b4{
+    top:200px;
+    left:25px;
+   }
+   #b5{
+    top:200px;
+    left:200px;
+   }
+   #b6{
+    top:200px;
+    left:375px;
+   }
+   #b7{
+    top:375px;
+    left:25px;
+   }
+   #b8{
+    top:375px;
+    left:200px;
+   }
+   #b9{
+    top:375px;
+    left:375px;
+   }
