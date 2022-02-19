@@ -1,59 +1,83 @@
-var con=1;
-var boton1="boton1",boton2="boton2",boton3="boton3",boton4="boton4",boton5="boton5",boton6="boton6",boton7="boton7",boton8="boton8",boton9="boton9";
-function actions(boton){
- if(boton.className=="boton"){
+let turno = false;
+let ganar = false;
+let cont=0;
 
-  boton.className="clicked";
-  var text;
-  if(con%2==0){
-   text="X";
-  }else{
-   text="O";
-  }
-  boton.value=text;
 
-  boton.appendChild(document.createTextNode(text));
-  con++;
-  asignation(text,boton);
- }else{
 
- }
+const cli = (even) => {
+    const {id} = even.target;
+    const div = document.getElementById(id);
+    const t = turno;
+        if(t){
+            document.getElementById("x").innerText="Turno jugador X";
+            document.getElementById("x").className="activo";
+            document.getElementById("o").innerText="Turno jugador O";
+            document.getElementById("o").className="noActivo";
+        }else{
+            document.getElementById("o").innerText="Turno jugador O";
+            document.getElementById("o").className="activo";
+            document.getElementById("x").innerText="Turno jugador X";
+            document.getElementById("x").className="noActivo";
+        }
+    if(div.innerText == ""&& ganar==false){
+        div.innerText = turno ? "O" : "X";
+        cont++;
+        ganador();  
+        turno = !turno;
+        
+        
+    }
+    
+    
 }
-function asignation(text,boton){
- if(boton1==boton.name){
-  boton1=text;
- }
- else if(boton2==boton.name){
-  boton2=text;
- }
- else if(boton3==boton.name){
-  boton3=text;
- }
- else if(boton4==boton.name){
-  boton4=text;
- }
- else if(boton5==boton.name){
-  boton5=text;
- }
- else if(boton6==boton.name){
-  boton6=text;
- }
- else if(boton7==boton.name){
-  boton7=text;
- }
- else if(boton8==boton.name){
-  boton8=text;
- }
- else if(boton9==boton.name){
-  boton9=text;
- }
- validation(text);
+
+
+const reiniciar = () => {
+    turno=false;
+    ganar=false;
+    cont=0;
+
+            document.getElementById("x").innerText="Turno jugador X";
+            document.getElementById("x").className="activo";
+            document.getElementById("o").innerText="Turno jugador O";
+            document.getElementById("o").className="noActivo";
+    
+    for (let i=0;i<9;i++){
+        const di = document.getElementById(i+1);
+        di.innerText="";  
+    }
 }
-function validation(text){
- if((boton1==boton2 && boton2==boton3)||(boton1==boton5 && boton5==boton9)||(boton3==boton5 && boton5==boton7)||(boton4==boton5 && boton5==boton6)||(boton7==boton8 && boton8==boton9)||(boton1==boton4 && boton4==boton7)||(boton2==boton5 && boton5==boton8)||(boton3==boton6 && boton6==boton9)){
-  var con=confirm(text+" YA GANASTE ¿QUIERES VOLVER A JUGAR?");
-  if(con==true){
-   window.location.reload();
-  }
- }
+
+const ganador = () => {
+    const datos = [9];
+    
+    for (let i=0;i<9;i++){
+        const div = document.getElementById(i+1);
+        datos[i]=(div.innerText);  
+    }
+
+  
+
+     if((datos[0]==datos[1] && datos[0]==datos[2]&& datos[0]!=="")||
+        (datos[3]==datos[4] && datos[3]==datos[5]&& datos[3]!=="")||
+        (datos[6]==datos[7] && datos[6]==datos[8]&& datos[6]!=="")||
+        (datos[0]==datos[3] && datos[0]==datos[6]&& datos[0]!=="")||
+        (datos[1]==datos[4] && datos[1]==datos[7]&& datos[1]!=="")||
+        (datos[2]==datos[5] && datos[2]==datos[8]&& datos[2]!=="")||
+        (datos[0]==datos[4] && datos[0]==datos[8]&& datos[0]!=="")||
+        (datos[2]==datos[4] && datos[2]==datos[6]&& datos[2]!==""))
+        {
+        
+        ganar = true;
+        if (ganar&&turno){
+           setTimeout(()=> alert("Ganó jugador O"),100);
+        }
+        else if (ganar){
+            setTimeout(()=> alert("Ganó jugador X"),100);
+        }
+    }
+    else if(cont == 9){
+       alert("Nadie gano, vuelvan a intertarlo");
+       cont=0;     
+    }
 }
